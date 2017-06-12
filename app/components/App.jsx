@@ -31,7 +31,7 @@ const App = () => (
     <div className="row">
       <div className="columns medium-6 large-4 small-centered">
         <Route exact path="/" component={Timer}/>
-        <Route path="countdown/" component={Countdown}/>
+        <Route path="/countdown" component={Countdown}/>
       </div>
     </div> 
   </div>  

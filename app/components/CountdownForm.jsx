@@ -9,7 +9,12 @@ class CountdownForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    alert('hello');
+    var strSeconds = this.refs.seconds.value;
+
+    if (strSeconds.match(/^[0-9]*$/)) {
+      this.refs.seconds.value = '';
+      this.props.onSetCountdown(parseInt(strSeconds, 10));
+    }
   }
 
   render() {

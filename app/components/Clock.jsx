@@ -1,6 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Clock extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
 
   formatSeconds(totalSeconds) {
     let seconds, minutes;
@@ -12,12 +17,23 @@ class Clock extends React.Component {
   }
   
   render() { 
+    let { totalSeconds } = this.props;
     return (
-      <div>
-        <h3>Clock</h3>
+      <div className="clock">
+        <span className="clock-text">
+          { this.formatSeconds(totalSeconds)}
+        </span>
       </div>
     );
   }
 }
+
+Clock.propTypes = {
+  totalSeconds: PropTypes.number
+};
+
+Clock.defaultProps = {
+  totalSeconds: 0
+};
 
 export default Clock;

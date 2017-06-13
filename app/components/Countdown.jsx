@@ -1,9 +1,11 @@
 import React from 'react';
 import Clock from 'Clock';
+import CountdownForm from 'CountdownForm';
 
 const Countdown = () => (
   <div>
-    <Clock totalSeconds={129} />
+    <Clock />
+    <CountdownForm />
   </div>
 )
 

@@ -5,7 +5,6 @@ import Controls from 'Controls';
 const Timer = () => (
   <div>
     <Clock/>
-    <Controls/>
   </div>
 )
 

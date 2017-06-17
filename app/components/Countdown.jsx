@@ -58,7 +58,7 @@ class Countdown extends React.Component {
   }
 }
 
-Countdown.propTypes = { count: React.PropTypes.number };
+Countdown.propTypes = { count: PropTypes.number };
 Countdown.defaultProps = { 
   count: 0,
   countdownStatus: 'stopped' 

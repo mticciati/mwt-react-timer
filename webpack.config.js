@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   entry: [
@@ -13,6 +14,16 @@ module.exports = {
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery'
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        context: '/',
+        sassLoader: {
+          includePaths: [
+            path.resolve(__dirname, './node_modules/foundation-sites/scss')
+          ]
+        }
+      },
     })
   ],
   output: {

@@ -7,7 +7,6 @@ import App from 'App';
 //import routes from './routes.js';
 
 //Load Foundation
-require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
 $(document).foundation();
 
 

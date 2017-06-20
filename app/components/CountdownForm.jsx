@@ -5,6 +5,7 @@ class CountdownForm extends React.Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+
   }
 
   onSubmit(e) {
@@ -13,7 +14,7 @@ class CountdownForm extends React.Component {
 
     if (strSeconds.match(/^[0-9]*$/)) {
       this.refs.seconds.value = '';
-      this.props.onSetCountdown(parseInt(strSeconds, 10));
+      this.props.onSetCount(parseInt(strSeconds, 10));
     }
   }
 

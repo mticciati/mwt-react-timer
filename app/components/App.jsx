@@ -8,9 +8,9 @@ import Countdown from 'Countdown';
 
 const App = () => ( 
   <div>  
-    <div className="top-bar">
+    <div className="top-bar" id="responsive-menu">
       <div className="top-bar-left">
-        <ul className="menu">
+        <ul className="vertical medium-horizontal menu">
           <li className="menu-text">React Timer</li> 
           <li>
             <NavLink exact to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>Timer</NavLink>  
@@ -28,6 +28,7 @@ const App = () => (
         </ul>
       </div>
     </div>
+
     <div className="row">
       <div className="columns medium-6 large-4 small-centered">
         <Route exact path="/" component={Timer}/>

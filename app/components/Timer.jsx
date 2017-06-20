@@ -1,11 +1,88 @@
 import React from 'react';
 import Clock from 'Clock';
 import Controls from 'Controls';
+import CountdownForm from 'CountdownForm';
+import PropTypes from 'prop-types';
 
-const Timer = () => (
-  <div>
-    <Clock/>
-  </div>
-)
+class Timer extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.handleStatusChange = this.handleStatusChange.bind(this);
+    this.handleSetCountup = this.handleSetCount.bind(this);
+    this.tick = this.tick.bind(this);
+
+    this.state = ({
+      count: props.count,
+      countStatus: props.countStatus
+    });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.countStatus !== prevState.countStatus) {
+      switch  (this.state.countStatus) {
+        case 'started':
+          this.tick();
+          break;
+        case 'stopped':
+          this.setState({
+            count: 0
+          });
+        case 'paused':
+          clearInterval(this.timer);
+          this.timer = undefined;
+          break;
+      }
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    this.timer = undefined;
+  }
+
+  handleStatusChange(newStatus) {
+    this.setState({
+      countStatus: newStatus
+    });
+  }
+
+  handleSetCount() {
+    this.setState({
+      countStatus: 'started'
+    });
+  }
+
+  tick() {
+    this.timer = setInterval(() => {
+      let newCount = this.state.count + 1;
+      this.setState({
+        count: newCount
+      });
+
+    }, 1000)
+  }
+
+  render() {
+    let {countStatus} = this.state;
+    return (
+      <div>
+        <Clock/>
+        <Controls countStatus={countStatus} onStatusChange={this.handleStatusChange} />
+      </div>
+    );
+  }
+  
+}
+
+Timer.propTypes = {
+  count: PropTypes.number
+}
+
+Timer.defaultProps = {
+  count: 0,
+  countStatus: 'stopped'
+}
 
 export default Timer;

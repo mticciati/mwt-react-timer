@@ -9,18 +9,18 @@ class Countdown extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleSetCountdown = this.handleSetCountdown.bind(this);
+    this.handleSetCount = this.handleSetCount.bind(this);
     this.startTimer = this.startTimer.bind(this);
     this.handleStatusChange = this.handleStatusChange.bind(this);
     this.state = ({ 
       count: props.count,
-      countdownStatus: props.countdownStatus 
+      countStatus: props.countStatus 
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.countdownStatus !== prevState.countdownStatus) {
-      switch (this.state.countdownStatus) {
+    if (this.state.countStatus !== prevState.countStatus) {
+      switch (this.state.countStatus) {
         case 'started':
           this.startTimer();
           break;
@@ -50,33 +50,33 @@ class Countdown extends React.Component {
 
       if (newCount === 0) {
         this.setState({
-          countdownStatus: 'stopped'
+          countStatus: 'stopped'
         });
       }
     }, 1000);
   }
 
-  handleSetCountdown(seconds) {
+  handleSetCount(seconds) {
     this.setState({
       count: seconds,
-      countdownStatus: 'started'
+      countStatus: 'started'
     });
   }
 
   handleStatusChange(newStatus) {
     this.setState({
-      countdownStatus: newStatus
+      countStatus: newStatus
     });
   }
 
   render() {
-    let {count, countdownStatus} = this.state;
+    let {count, countStatus} = this.state;
     let renderControlArea = () => {
-      if (countdownStatus !== 'stopped') {
-        return <Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange} />
+      if (countStatus !== 'stopped') {
+        return <Controls countStatus={countStatus} onStatusChange={this.handleStatusChange} />
       }
       else {
-        return <CountdownForm onSetCountdown={this.handleSetCountdown} />
+        return <CountdownForm onSetCount={this.handleSetCount} />
       }
     }
     return (
@@ -92,7 +92,7 @@ class Countdown extends React.Component {
 Countdown.propTypes = { count: PropTypes.number };
 Countdown.defaultProps = { 
   count: 0,
-  countdownStatus: 'stopped' 
+  countStatus: 'stopped' 
 };
 
 export default Countdown;

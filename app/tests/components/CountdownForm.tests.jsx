@@ -12,9 +12,9 @@ describe('CountdownForm', () => {
     expect(CountdownForm).toExist();
   });
 
-  it('should call onSetCountdown if valid seconds entered', () => {
+  it('should call onSetCount if valid seconds entered', () => {
     let spy = expect.createSpy();
-    let countdownForm = ReactTestUtils.renderIntoDocument(<CountdownForm onSetCountdown={spy} />);
+    let countdownForm = ReactTestUtils.renderIntoDocument(<CountdownForm onSetCount={spy} />);
     let $el = $(ReactDOM.findDOMNode(countdownForm));
 
     countdownForm.refs.seconds.value = 101;
@@ -23,9 +23,9 @@ describe('CountdownForm', () => {
     expect(spy).toHaveBeenCalledWith(101);
   });
 
-  it('should NOT call onSetCountdown if valid seconds entered', () => {
+  it('should NOT call onSetCount if valid seconds entered', () => {
     let spy = expect.createSpy();
-    let countdownForm = ReactTestUtils.renderIntoDocument(<CountdownForm onSetCountdown={spy} />);
+    let countdownForm = ReactTestUtils.renderIntoDocument(<CountdownForm onSetCount={spy} />);
     let $el = $(ReactDOM.findDOMNode(countdownForm));
 
     countdownForm.refs.seconds.value = 'One ring to rule them all...';

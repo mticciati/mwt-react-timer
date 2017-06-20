@@ -10,7 +10,7 @@ class Timer extends React.Component {
     super(props);
 
     this.handleStatusChange = this.handleStatusChange.bind(this);
-    this.handleSetCountup = this.handleSetCount.bind(this);
+    this.handleSetCount = this.handleSetCount.bind(this);
     this.tick = this.tick.bind(this);
 
     this.state = ({
@@ -46,6 +46,10 @@ class Timer extends React.Component {
     this.setState({
       countStatus: newStatus
     });
+
+    if (newStatus === 'started') {
+      this.handleSetCount();
+    }
   }
 
   handleSetCount() {
@@ -65,10 +69,11 @@ class Timer extends React.Component {
   }
 
   render() {
-    let {countStatus} = this.state;
+    let {count, countStatus} = this.state;
     return (
       <div>
-        <Clock/>
+        <h1 className="page-title">Timer</h1>
+        <Clock totalSeconds={count}/>
         <Controls countStatus={countStatus} onStatusChange={this.handleStatusChange} />
       </div>
     );
